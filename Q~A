@@ -1,0 +1,39 @@
+How to write Terraform code
+What is a provider in Terraform
+What are the three blocks in Terraform
+How to create 5 resources in AWS with Terraform
+What is a variable.tf file
+What is the difference between variable.tf and tfvars
+What is a Module in Terraform
+What is the benefit of creating modules, and how to call modules
+What happens if the TF state file is missing
+What is the best practice to prevent losing the TF state file
+What is the best remote backend option
+How to make the TF state file go to S3
+How to call modules in Terraform
+What to do if the client doesn't allow executing Terraform commands from the local machine
+How to set up Jenkins in a company environment
+How many plugins are installed by default in Jenkins
+What security measures are taken in the Jenkins pipeline
+How to do container scanning
+How to create different access levels in Jenkins
+How to handle credentials in Kubernetes
+What is the difference between secrets and RBAC in Kubernetes
+How to take a backup of the complete Jenkins
+How to install multiple plugins in one shot in Jenkins
+What are the day-to-day responsibilities in Jenkins
+What Jenkins issues have you observed in the last year
+What is the difference between a scripted and a declarative pipeline
+How to provide a static IP to an EC2 machine
+How to take a backup of an EC2 machine and move to S3
+Can AMIs be moved to S3
+Can volumes be moved to S3
+Can RDS snapshots be moved to S3
+What are S3 storage classes
+What is the benefit of using Glacier storage
+What are the 5 components of VPC
+Various port numbers (PostgreSQL, MySQL, SSH, SMTP, web server, etc.)
+How to run Jenkins on a different port
+How to optimize costs in AWS
+How to resolve merge conflicts
+How many subnets are required
