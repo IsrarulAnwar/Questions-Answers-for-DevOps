@@ -37,3 +37,13 @@ How to run Jenkins on a different port
 How to optimize costs in AWS
 How to resolve merge conflicts
 How many subnets are required
+What is the difference between 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐢𝐦𝐩𝐨𝐫𝐭 and 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐭𝐚𝐢𝐧𝐭?
+How do you manage secrets in Terraform without hardcoding them?
+What’s the difference between 𝐜𝐨𝐮𝐧𝐭 and 𝐟𝐨𝐫_𝐞𝐚𝐜𝐡? Give a real-world use case.
+How do you handle drift detection in Terraform?
+What is a Terraform remote backend, and why is it important?
+How do you manage multiple environments (dev, staging, prod) in Terraform?
+Difference between 𝐥𝐨𝐜𝐚𝐥-𝐞𝐱𝐞𝐜 and 𝐫𝐞𝐦𝐨𝐭𝐞-𝐞𝐱𝐞𝐜 provisioners.
+How do you safely roll back infrastructure changes after a failed deployment?
+Explain 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐫𝐞𝐟𝐫𝐞𝐬𝐡 vs 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐩𝐥𝐚𝐧.
+How do you write reusable Terraform modules?
