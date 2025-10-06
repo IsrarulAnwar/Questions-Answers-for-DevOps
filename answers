@@ -1,0 +1,192 @@
+### 1. How to write Terraform code
+Terraform code is written in HashiCorp Configuration Language (HCL), which defines infrastructure resources in `.tf` files. You declare providers, resources, variables, outputs, and modules using blocks. Code is organized into logical units to describe the desired infrastructure state.
+
+### 2. What is a provider in Terraform
+A provider is a plugin that lets Terraform manage resources from a specific platform (like AWS, Azure, GCP, etc.). It acts as the bridge between Terraform and the APIs of external services.
+
+### 3. What are the three blocks in Terraform
+The three primary blocks are:
+- `provider`: Configures the provider (e.g., AWS).
+- `resource`: Describes infrastructure components (e.g., aws_instance).
+- `variable`: Declares input variables for parameterizing configurations.
+
+### 4. How to create 5 resources in AWS with Terraform
+Define five `resource` blocks in your `.tf` file, each with unique names and configurations. For example, to create five EC2 instances, use `count = 5` in the resource block.
+
+### 5. What is a variable.tf file
+`variable.tf` is a file that contains variable definitions using the `variable` block, allowing you to set configurable values for your Terraform configuration.
+
+### 6. What is the difference between variable.tf and tfvars
+- `variable.tf` defines variable names, descriptions, and types.
+- `.tfvars` (or `terraform.tfvars`) files provide values for those variables.
+
+### 7. What is a Module in Terraform
+A module is a container for multiple resources used together. Modules allow you to reuse and organize code across different configurations.
+
+### 8. What is the benefit of creating modules, and how to call modules
+Benefits: Reusability, maintainability, and standardization.  
+To call a module, use the `module` block and specify the source and required variables.
+
+### 9. What happens if the TF state file is missing
+Terraform loses track of the managed infrastructure, and you risk creating duplicate resources or losing control over existing ones.
+
+### 10. What is the best practice to prevent losing the TF state file
+Store the state file in a remote, versioned backend (like AWS S3 with DynamoDB locking) and use version control for backups.
+
+### 11. What is the best remote backend option
+AWS S3 (with DynamoDB for locking), Azure Blob Storage, or HashiCorp Consul are popular, secure, and scalable choices.
+
+### 12. How to make the TF state file go to S3
+Configure a `backend "s3"` block in your Terraform configuration, specifying the bucket, key, and region.
+
+### 13. How to call modules in Terraform
+Use the `module` block in your configuration, specifying the `source` path and passing required variables.
+
+### 14. What to do if the client doesn't allow executing Terraform commands from the local machine
+Use a centralized CI/CD tool (like Jenkins, GitHub Actions, or Terraform Cloud) to run Terraform workflows remotely.
+
+### 15. How to set up Jenkins in a company environment
+- Install Jenkins on a server (physical, VM, or container).
+- Secure with proper authentication.
+- Install necessary plugins.
+- Configure build agents/nodes.
+- Set up backup and monitoring.
+
+### 16. How many plugins are installed by default in Jenkins
+Jenkins comes with a set of core plugins; typically, around 20-30 essential plugins are installed by default, depending on the version.
+
+### 17. What security measures are taken in the Jenkins pipeline
+- Restrict permissions using roles and users.
+- Use credentials binding for secrets.
+- Enable CSRF protection.
+- Isolate build agents.
+- Use audit logs and secure the Jenkins URL with SSL.
+
+### 18. How to do container scanning
+Use tools like Trivy, Clair, or Aqua Security in your CI/CD pipeline to scan container images for vulnerabilities.
+
+### 19. How to create different access levels in Jenkins
+Set up Role-Based Access Control (RBAC) using plugins like "Role Strategy" to define roles and assign permissions to users/groups.
+
+### 20. How to handle credentials in Kubernetes
+Use Kubernetes Secrets to store sensitive information and reference them in pod specs using environment variables or volume mounts.
+
+### 21. What is the difference between secrets and RBAC in Kubernetes
+- Secrets: Store sensitive data (like passwords, tokens).
+- RBAC: Controls who can access or modify Kubernetes resources.
+
+### 22. How to take a backup of the complete Jenkins
+- Backup the JENKINS_HOME directory (contains all jobs, plugins, config).
+- Use plugins like "ThinBackup" or "Backup Plugin" for scheduled backups.
+
+### 23. How to install multiple plugins in one shot in Jenkins
+Use the Jenkins CLI or a plugins.txt file (for Docker) listing required plugins, then install them all at once.
+
+### 24. What are the day-to-day responsibilities in Jenkins
+- Monitoring builds and pipelines.
+- Managing jobs, plugins, and nodes.
+- Troubleshooting failures.
+- Ensuring security and backups.
+- Updating Jenkins and plugins.
+
+### 25. What Jenkins issues have you observed in the last year
+Common issues: Build agent disconnections, plugin incompatibility, slow UI, disk space exhaustion, and credential leaks.
+
+### 26. What is the difference between a scripted and a declarative pipeline
+- Scripted: Written in Groovy, more flexible, less readable.
+- Declarative: Uses a predefined syntax, easier to read/maintain, preferred for most use cases.
+
+### 27. How to provide a static IP to an EC2 machine
+Assign an Elastic IP (EIP) to the EC2 instance via AWS console, CLI, or Terraform.
+
+### 28. How to take a backup of an EC2 machine and move to S3
+Create an AMI or snapshot of the instance/volume. Snapshots are automatically stored in S3 (though not as flat files).
+
+### 29. Can AMIs be moved to S3
+AMIs use S3 for snapshot storage, but you cannot directly move/export an AMI as a file to S3.
+
+### 30. Can volumes be moved to S3
+EBS snapshots are stored in S3, but you cannot directly access or move a volume as a regular S3 object.
+
+### 31. Can RDS snapshots be moved to S3
+You can export RDS snapshots to S3 using the "Export to S3" feature for further analysis.
+
+### 32. What are S3 storage classes
+- Standard
+- Intelligent-Tiering
+- Standard-IA (Infrequent Access)
+- One Zone-IA
+- Glacier Instant Retrieval
+- Glacier Flexible Retrieval
+- Glacier Deep Archive
+
+### 33. What is the benefit of using Glacier storage
+Cost-effective long-term storage for infrequently accessed data, with trade-offs in retrieval time.
+
+### 34. What are the 5 components of VPC
+- Subnets
+- Route Tables
+- Internet Gateway (IGW)
+- Network ACLs (NACLs)
+- Security Groups
+
+### 35. Various port numbers (PostgreSQL, MySQL, SSH, SMTP, web server, etc.)
+- PostgreSQL: 5432
+- MySQL: 3306
+- SSH: 22
+- SMTP: 25, 587
+- HTTP: 80
+- HTTPS: 443
+
+### 36. How to run Jenkins on a different port
+Change the HTTP port in the Jenkins configuration file or use the `--httpPort` argument when starting Jenkins.
+
+### 37. How to optimize costs in AWS
+- Right-size resources
+- Use Reserved Instances or Savings Plans
+- Delete unused resources
+- Use S3 lifecycle policies
+- Monitor with AWS Cost Explorer
+
+### 38. How to resolve merge conflicts
+- Pull the latest changes
+- Use a diff tool or editor to manually resolve conflicts
+- Mark as resolved and commit
+- Push changes
+
+### 39. How many subnets are required
+At least two (public and private) for high availability; more for multiple AZs or environments.
+
+### 40. What is the difference between 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐢𝐦𝐩𝐨𝐫𝐭 and 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐭𝐚𝐢𝐧𝐭?
+- `terraform import`: Brings existing resources into Terraform management.
+- `terraform taint`: Marks a resource for recreation in the next apply.
+
+### 41. How do you manage secrets in Terraform without hardcoding them?
+Use environment variables, encrypted files, or secret management tools (e.g., AWS Secrets Manager, Vault) with data sources.
+
+### 42. What’s the difference between 𝐜𝐨𝐮𝐧𝐭 and 𝐟𝐨𝐫_𝐞𝐚𝐜𝐡? Give a real-world use case.
+- `count`: Creates multiple instances using a numeric value (e.g., `count = 3`).
+- `for_each`: Creates resources for each item in a map or set (e.g., provisioning different S3 buckets for each environment).
+
+### 43. How do you handle drift detection in Terraform?
+Run `terraform plan` or `terraform refresh` to compare actual infrastructure state with Terraform state and detect drifts.
+
+### 44. What is a Terraform remote backend, and why is it important?
+A remote backend stores Terraform state files in a shared, remote location (like S3), enabling team collaboration, state locking, and recovery.
+
+### 45. How do you manage multiple environments (dev, staging, prod) in Terraform?
+Use workspaces, separate directories, or separate state files and variable values for each environment.
+
+### 46. Difference between 𝐥𝐨𝐜𝐚𝐥-𝐞𝐱𝐞𝐜 and 𝐫𝐞𝐦𝐨𝐭𝐞-𝐞𝐱𝐞𝐜 provisioners.
+- `local-exec`: Runs commands on the machine running Terraform.
+- `remote-exec`: Runs commands on the remote resource after creation (e.g., on an EC2 instance).
+
+### 47. How do you safely roll back infrastructure changes after a failed deployment?
+Restore from backups, revert to previous state files, or use version control to reapply an earlier configuration.
+
+### 48. Explain 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐫𝐞𝐟𝐫𝐞𝐬𝐡 vs 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐩𝐥𝐚𝐧.
+- `terraform refresh`: Updates the state file with the real infrastructure state.
+- `terraform plan`: Shows the changes Terraform will apply to match the configuration.
+
+### 49. How do you write reusable Terraform modules?
+Create a directory with resource definitions and variables, then call the module in other configurations using the `module` block and passing required variables.
