@@ -104,7 +104,6 @@ docker network create my-network
 
 ✅ Steps to Create a Docker Container
 
-
 Write a Dockerfile
 Example:
 
@@ -114,11 +113,11 @@ COPY . .
 RUN npm install
 CMD ["node", "index.js"]
 
-Build the Docker Image
+✅ Build the Docker Image
 
 docker build -t my-node-app .
 
-Run the Docker Container
+✅ Run the Docker Container
 
 docker run -d -p 3000:3000 my-node-app
 
