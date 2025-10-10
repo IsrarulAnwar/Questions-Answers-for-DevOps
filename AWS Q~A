@@ -1,0 +1,216 @@
+##Here's a clear, easy-to-understand, and interview-friendly set of answers with real-world production examples for each of your questions. You can use these to explain concepts confidently to interviewers.
+
+1. What is a Static IP and a Public IP?
+
+Static IP: An IP address that doesn’t change. It’s manually assigned and remains constant.
+Public IP: An IP address accessible over the internet. It can be static or dynamic.
+
+🛠 Real-world example: In AWS, when you launch an EC2 instance, you can assign an Elastic IP (a type of static public IP) to ensure your server is always reachable at the same address—useful for web servers or APIs.
+
+2. Difference between Security Group and Network ACL (NACL)?
+
+Security Group: Acts as a virtual firewall at the instance level. It’s stateful (return traffic is automatically allowed).
+NACL: Works at the subnet level. It’s stateless (return traffic must be explicitly allowed).
+
+🛠 Example: In a production VPC, you might use Security Groups to allow port 443 for your web server, while NACLs block suspicious IP ranges at the subnet level for added security.
+
+3. What are policies in AWS, and what are the types?
+
+Policies are JSON documents that define permissions.
+Types:
+
+Identity-based policies (attached to users, groups, roles)
+Resource-based policies (attached to resources like S3 buckets)
+Service control policies (SCPs) (used in AWS Organizations)
+Session policies (temporary permissions)
+
+
+
+🛠 Example: You can attach an identity-based policy to a developer role that allows only read access to S3 buckets.
+
+4. How do you create S3 Cross-Region Replication (CRR)?
+
+Enable versioning on both source and destination buckets.
+Set up a replication rule in the source bucket.
+Assign IAM role with replication permissions.
+Choose the destination bucket in another region.
+
+🛠 Example: Replicating logs from us-east-1 to ap-south-1 for disaster recovery.
+
+5. If a file in Bucket A is deleted, what happens in Bucket B?
+
+CRR does not replicate deletions by default. So, the file remains in Bucket B.
+
+🛠 Example: If a user deletes a file from the source bucket, it stays in the destination unless you enable delete marker replication.
+
+6. Explain what happens in this case.
+
+If delete marker replication is disabled, the file stays in Bucket B.
+If enabled, the delete marker is replicated, and the file is marked as deleted in Bucket B too.
+
+
+7. What is Virtualization?
+
+Creating virtual versions of physical resources (servers, storage, etc.) using a hypervisor.
+
+🛠 Example: VMware or VirtualBox lets you run multiple OSes on one physical machine.
+
+8. What is Containerization?
+
+Packaging applications with dependencies into containers that run consistently across environments.
+
+🛠 Example: Docker containers running Node.js apps in production, ensuring the same behavior on dev, staging, and prod.
+
+9. What is a Dockerfile?
+
+A text file with instructions to build a Docker image.
+
+
+10. Dockerfile Example
+Dockerfile# 
+
+# Use Node.js base image
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy files
+COPY package*.json ./
+RUN npm install
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start app
+CMD ["npm", "start"]
+
+11. What is a Docker network?
+
+A virtual network that allows containers to communicate with each other and the outside world.
+
+
+12. What is the default Docker network?
+
+bridge: Default network for containers on a single host.
+
+
+13. How do you create a Docker network?
+
+docker network create my-network
+
+14. How do you create a Docker container?
+
+✅ Steps to Create a Docker Container
+
+
+Write a Dockerfile
+Example:
+
+FROM node:18
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["node", "index.js"]
+
+Build the Docker Image
+
+docker build -t my-node-app .
+
+Run the Docker Container
+
+docker run -d -p 3000:3000 my-node-app
+
+15. How do you run a Dockerfile?
+
+docker build -t my-app .
+docker run -d -p 3000:3000 my-appShow
+
+16. What is a Deployment in Kubernetes?
+
+A controller that manages Pods, ensuring the desired number of replicas are running and updated.
+
+🛠 Example: Deploying a React app with 3 replicas for high availability.
+
+17. Kubernetes Pod explained for a 5-year-old
+
+"Imagine a lunchbox that holds your favorite food. A Pod is like that lunchbox—it holds your app and everything it needs to run."
+
+
+18. Types of Deployments in Kubernetes
+
+Deployment
+StatefulSet
+DaemonSet
+Job
+CronJob
+
+
+19. What is a StatefulSet in Kubernetes?
+
+Manages stateful applications. Each Pod gets a stable identity and persistent storage.
+
+🛠 Example: Running a MongoDB cluster where each node needs a fixed identity.
+
+20. What is a DaemonSet?
+
+Ensures a copy of a Pod runs on every node.
+
+🛠 Example: Deploying a log collector (like Fluentd) on all nodes.
+
+21. What is a Service in Kubernetes?
+
+An abstraction that exposes Pods to the network. It enables communication between components.
+
+🛠 Example: A frontend Service routes traffic to backend Pods.
+
+22. What is a LoadBalancer and Ingress Controller in Kubernetes?
+
+LoadBalancer: Exposes Services externally using a cloud provider’s load balancer.
+Ingress Controller: Manages HTTP/HTTPS traffic and routes it based on rules.
+
+
+23. Difference between LoadBalancer and Ingress Controller
+
+LoadBalancer: One service per external IP.
+Ingress Controller: One IP can route to multiple services using paths/domains.
+
+
+24. Can you create a Pod without a Deployment?
+
+Yes, using a Pod manifest directly. But it won’t auto-restart or scale.
+
+
+25. Terraform script for EC2 and S3
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+}
+
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "my-unique-bucket-name"
+  acl    = "private"
+}
+
+
+26. Explanation of Terraform script
+
+Provider: AWS in us-east-1.
+EC2 Instance: Launches a t2.micro with a specific AMI.
+S3 Bucket: Creates a private bucket named my-unique-bucket-name.
+
+
+27. How to set up Kubernetes on AWS using EKS
+
+Create EKS cluster via AWS Console or Terraform.
+Configure kubectl using aws eks update-kubeconfig.
+Use eksctl or Terraform to manage nodes.
+Deploy workloads using manifests.
+
+🛠 Example: Use Terraform to automate EKS setup and deploy microservices with Helm charts.
